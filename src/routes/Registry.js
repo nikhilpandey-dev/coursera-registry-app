@@ -20,7 +20,7 @@ function Registry() {
         <div>
             <h1>Registry</h1>
             <Link to="/">Click here for Home</Link>
-            <form>
+            <form onSubmit={addItems}>
                 <label>Text input
             <input type='text' value={textInput} onChange={(e) => setTextInput(e.target.value)}/>
             </label>
