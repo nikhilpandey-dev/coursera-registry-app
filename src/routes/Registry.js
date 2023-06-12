@@ -1,9 +1,11 @@
+import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {Link} from "react-router-dom";
 function Registry() {
-    const [registryData, setRegistryData] = useState([])
-    const [textInput, setTextInput] = useState("")
+    const [registryData, setRegistryData] = useState([]);
+    const [textInput, setTextInput] = useState("");
+    const [error, setError] = useState(false);
     const addItems = (e) => {
         e.preventDefault();
 
@@ -14,6 +16,11 @@ function Registry() {
         // console.log(registryData);
 
     }
+
+    useEffect(() => {
+        if(textInput.length > 10) setError(true);
+        else setError(false);
+    }, [textInput])
 
     console.log(registryData);
     return (
@@ -26,7 +33,7 @@ function Registry() {
             </label>
             <input type='submit' value='Submit' />
             </form>
-           
+           {error ? <span style={{color: "red"}}>Error occurred.</span> : null}
         </div>
     )
 }
